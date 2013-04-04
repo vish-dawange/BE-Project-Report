@@ -1,0 +1,12 @@
+\chapter{Proposed Work}
+
+\section{Problem Statement}
+The compiler is made to identify the critical section in a multi-threaded program for the synchronization bugs, which currently is not a feature in gcc. Also, the compiler should automatically take care of the critical sections by introducing helper statements (comments) for Lock and Unlock function calls in a multi-threaded program without involvement of the programmers.
+\section{Scope}
+The project has been split up in two modules. 
+
+Firstly, the project aims to ﬁnd out critical sections in a program which may cause race conditions. The reasons for Race conditions’ occurence are many. For example, simaltaneuos writing on shared variables(like global, extern, volatile), ﬁles, pipes. We shall be ﬁnding the critical sections of these. 
+
+There are situations where prior locks exist and they need to be taken care of. The approach generally used is either a lock free program, or the existing locks are removed and then put back. This causes lot of processing overhead, and hence is ineffecient. 
+
+We also intended to contentrate only on the critical sections of the code since doing a point-to analysis of the whole program proves out the be process intensive. In some cases wrong Lock and Unlock may the reason for Race Condition so in such cases detecting CS and inserting Lock and Unlock on proper location.
