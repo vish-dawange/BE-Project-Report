@@ -1,0 +1,30 @@
+\begin{document}
+\begin{center}
+\thispagestyle{empty}
+\vspace*{4\baselineskip}
+\LARGE{\textbf{ABSTRACT}}\\[1.0cm]
+\end{center}
+\thispagestyle{empty}
+\large{\emph{
+\indent\indent Concurrent programming is gaining popularity,
+since Moore's law is nearing its end of life. The significant truth
+is that processors aren't getting faster anymore, but you get more
+cores.\\
+\indent\indent In concurrent / parallel programming, one of the toughest
+tasks for programmers is synchronizing the access of shared
+memory to avoid basic problems of concurrency. While working
+on a large code base, programmers may miss out synchronizing
+certain critical section leaving the code vulnerable for race
+conditions to occur.\\
+\indent\indent We propose an approach that extends the capability of GCC to
+identify all the critical sections in multithreaded programs which
+has synchronization bugs, i.e. race conditions may occur due to
+incorrect/no use of locking and unlocking mechanisms, which will
+warn the programmers by pointing out the exact location where
+the problems would occur.\\
+\indent\indent Furthermore, it also provides synchronization to that section of
+code, by introducing proper locking methods. This stage is
+optional, and programmers may synchronize the section
+themselves too.\\
+\\[1cm]}}
+Keywords : Critical Section, Race Condition, GCC, Locks
