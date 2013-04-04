@@ -1,0 +1,24 @@
+\chapter{Conclusion and Future Scope}
+
+\section{Conclusion}
+The overall approach helps solve many practical problems. \\
+Bugs that are notoriously difficult to find in concurrent programming are handled by the compiler itself. In large code bases data races possibilities be will perfectly identified and this framework will help automatically detect critical section and provide Lock/Unlock system without involvement of the programmer.
+
+\section{Future Scope}
+Although this concept if pretty much full proof, the capabilities can extended further.\\
+As of now, we are only supporting POSIX thread library and semaphore locking mechanism, this project can be extended for other thread libraries and locking mechanism.
+\begin{itemize}
+\item OpenThreads
+\item Boost C++ libraries http://www.boost.org/
+\item OpenMP http://openmp.org/wp/
+\item Intel Cilk Plus http://software.intel.com/en-us/intel-cilk-plus
+\item ZThreads http://zthread.sourceforge.net/
+\end{itemize}
+
+Since this approach is generic, we can port the same for compilers of other languages. Since critical sections are one of the most important factors of concurrent programming, this port would help programmers of other domain incorporate it with their development and benefit from it.
+
+For now we have only concentrated on shared memory in User space. A possible future enhancement could be that we can tackle shared memory in the kernel space, (for example: kernel level pipes) or handle files as well.
+
+A very difficult (but a possible) concept of adding synchronization mechanisms automatically could be done. However, many complications are associated with it as locking mechanism depends on the application logic, which is practically impossible to identify programmatically.
+
+
