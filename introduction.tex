@@ -1,0 +1,48 @@
+\chapter{Introduction}
+
+In the recent years, from late 2005, clocks’ speeds haven’t advanced anymore. Instead, core counts have increased at the pace clock speed used to, and that has affected more and more programmers [1]. As programmers started migrating from single core to multicore architectural programming, many problems arose.
+
+One of the most difficult parts of multi-threaded programming is when programmers need to handle critical sections (A critical section of a multithreaded program is a section of code where shared data are accessed by the multiple threads) which are responsible for causing data races and are also one of the reasons for causing deadlocks. Data races occur due to incorrect or no synchronization of the threads in the programs.
+
+In order to avoid data races, synchronization is achieved by using lock/unlock mechanism (semaphores, monitors, pthread\_mutex, etc.) to limit a thread’s concurrent access to shared resources, if it is being used by other thread. To resolve the issue of manually handling each and every critical section or to debug large programs with synchronization bugs we are proposing an idea with which we identify critical sections which may cause data races, and avoid them by introducing proper synchronizations.
+\newpage
+\section{Background}
+In multithreaded programs, we often need to handle cases where critical sections exist, as the programs are at risk of producing unexpected outputs. This is done by introducing locking mechanisms so that only one thread may alter the data at once. This is necessary to avoid race conditions, which generally lead to unexpected results if the locking mechanism doesn't exist.
+
+\subsection{Critical Section}
+In concurrent programming, a critical section is a piece of code that accesses a shared resource (data structure or device) that must not be concurrently accessed by more than one thread of execution. A critical section will usually terminate in fixed time, and a thread, task, or process will have to wait for a fixed time to enter it (aka bounded waiting).
+
+By carefully controlling which variables are modified inside and outside the critical section, concurrent access to that state is prevented. A critical section is typically used when a multi-threaded program must update multiple related variables without a separate thread making conflicting changes to that data. In a related situation, a critical section may be used to ensure a shared resource, for example a printer, can only be accessed by one process at a time.
+
+\subsection{Race Condition}
+Race conditions arise in software when separate processes or threads of execution depend on some shared state. Operations upon shared states are critical sections that must be mutually exclusive. Failure to do so opens up the possibility of corrupting the shared state.
+
+Race conditions are notoriously difficult to reproduce and debug, since the end result is nondeterministic, and highly dependent on the relative timing between interfering threads. Problems occurring in production systems can therefore disappear when running in debug mode, when additional logging is added, or when attaching a debugger, often referred to as a Heisenbug. It is therefore highly preferable to avoid race conditions in the first place by careful software design than to fix problems afterwards.
+
+Race conditions occur especially in multithreaded, concurrent, parallel or distributed programs [2].
+
+\subsection{Synchronization}
+
+Thread synchronization or serialization, strictly defined, is the application of particular mechanisms to ensure that two concurrently-executing threads or processes do not execute specific portions of a program at the same time. If one thread has begun to execute a serialized portion of the program, any other thread trying to execute this portion must wait until the first thread finishes.
+
+Synchronization is used to control access to state in smallscale multiprocessing systems - in multithreaded environments and multiprocessor computers - and in distributed computers consisting of thousands of units [2].
+
+\section{Need}
+When large multithreaded programs are written, its difficult to keep a track of the critical sections in it. This may inturn lead to the occurence of unexpected results or may lead to synchronization bugs. Our project aims to find out these critical sections and introduce a locking mechanism to avoid race conditions in the program.
+
+And current version of GCC does not provide or support any feature to find out the critical sections or synchronization bugs in the multitheaded programming.
+
+\section{Motivation}
+
+
+Motivation behind Critical Section Detection tool is contribution to open source technology, because now a days there are many technologies which are there already implemented based on GCC or Open Source technologies but each of them was developed considering different parameters in front of them. 
+
+Our system is motivated not only considering detecting critical sections but different parameter which are mandatory now a day, like initially we are checking for error free C source code and after that tokenizing and parsing the same source code. So it seems that we need to study all the phases compiler in details and as fat our knowledge about GCC concerns, GCC doesn't provide this featue of detecting critical sections for given source code.
+
+GCC Extension for detecting Critical Sections in a Multi threaded Environment is motivated with respect to many parameter under one basic idea, considering one scenario where one peraon have written a lorge multithreaded code say 1 KLOC and another person tries to work on the same code but unfortunately there are some synchronization bugs, so in such a case it is so difficult to new person to browse that code and detect the suspected critical section or race condiiton. Hence if the tool that we have developed is used by that new person, would become very easy to detect suspected critical section.\\
+
+\section{Objective}
+To develop a GCC Extension for detecting Critical Sections and providing locking and unlocking mechanism or synchronization mechanism which may lead to race Condition or Synchronization bugs in a Multithreaded Environment.
+
+The main objective of the system is, the tool should automatically detect the suspected critical sections which may lead to race conditions or synchronization bugs in a multitheaded program.
+
