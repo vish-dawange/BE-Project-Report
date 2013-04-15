@@ -15,40 +15,44 @@
 %\usepackage{hyperref}
 \usepackage{pslatex} % for times new roman, old package, but works
 \usepackage{array} % for making text bold in table
+\usepackage{multirow,tabularx}
+\usepackage{rotating}
+\usepackage{longtable}
+\usepackage{hhline}
 
 
 %For inserting Python Code
 \usepackage{listings}
 \usepackage{color}
-
+ 
 \definecolor{dkgreen}{rgb}{0,0.6,0}
 \definecolor{gray}{rgb}{0.5,0.5,0.5}
 \definecolor{mauve}{rgb}{0.58,0,0.82}
-
-\lstset{ %
-  language=Python, % the language of the code
-  basicstyle=\footnotesize, % the size of the fonts that are used for the code
-  numbers=left, % where to put the line-numbers
-  numberstyle=\tiny\color{gray}, % the style that is used for the line-numbers
-  stepnumber=1, % each line is numbered
-  numbersep=5pt, % how far the line-numbers are from the code
-  backgroundcolor=\color{white}, % choose the background color. You must add \usepackage{color}
-  showspaces=false, % show spaces adding particular underscores
-  showstringspaces=false, % underline spaces within strings
-  showtabs=false, % show tabs within strings adding particular underscores
-  frame=single, % adds a frame around the code
-  rulecolor=\color{black}, % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. commens (green here))
-  tabsize=2, % sets default tabsize to 2 spaces
-  captionpos=b, % sets the caption-position to bottom
-  breaklines=true, % sets automatic line breaking
-  breakatwhitespace=false, % sets if automatic breaks should only happen at whitespace
-  title=\lstname, % show the filename of files included with \lstinputlisting;
+ 
+\lstset{%
+  language=Python,                % the language of the code
+  basicstyle=\footnotesize,           % the size of the fonts that are used for the code
+  numbers=left,                   % where to put the line-numbers
+  numberstyle=\tiny\color{gray},  % the style that is used for the line-numbers
+  stepnumber=1,                   % each line is numbered
+  numbersep=5pt,                  % how far the line-numbers are from the code
+  backgroundcolor=\color{white},      % choose the background color. You must add \usepackage{color}
+  showspaces=false,               % show spaces adding particular underscores
+  showstringspaces=false,         % underline spaces within strings
+  showtabs=false,                 % show tabs within strings adding particular underscores
+  frame=single,                   % adds a frame around the code
+  rulecolor=\color{black},        % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. commens (green here))
+  tabsize=2,                      % sets default tabsize to 2 spaces
+  captionpos=b,                   % sets the caption-position to bottom
+  breaklines=true,                % sets automatic line breaking
+  breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+  title=\lstname,                   % show the filename of files included with \lstinputlisting;
                                   % also try caption instead of title
-  keywordstyle=\color{blue}, % keyword style
-  commentstyle=\color{dkgreen}, % comment style
-  stringstyle=\color{mauve}, % string literal style
-  escapeinside={\%*}{*)}, % if you want to add a comment within your code
-  morekeywords={*,...} % if you want to add more keywords to the set
+  keywordstyle=\color{blue},          % keyword style
+  commentstyle=\color{dkgreen},       % comment style
+  stringstyle=\color{mauve},         % string literal style
+  escapeinside={\%*}{*)},            % if you want to add a comment within your code
+  morekeywords={*,...}               % if you want to add more keywords to the set
 }
 
 %%%%For inserting Python Code Over
@@ -56,10 +60,12 @@
 
 
 %For the header and footer
+
+%For the header and footer
 \usepackage{fancyhdr}
 \fancypagestyle{plain}{%
 %\fancyhf{} % clear all header and footer fields
-\fancyfoot[L]{\emph{This project is a Proof of Concept of GCC Extension for Detecting Critical Sections in a Multi-threaded Environment.}}
+\fancyfoot[L]{\emph{This project proposes a GCC Extension for Detecting Critical Sections in a Multi-threaded Environment.}} % except the center
 \fancyfoot[R]{\thepage}
 \renewcommand{\headrulewidth}{0.4pt}
 \renewcommand{\footrulewidth}{0.4pt}
@@ -67,18 +73,19 @@
 
 \pagestyle{fancy}
 \lhead{Chapter \thechapter}
-\renewcommand{\chaptermark}[1]{%
-\markboth{#1}{}}
+\renewcommand{\chaptermark}[1]{% 
+\markboth{#1}{}} 
 
-\fancyfoot[LO,LE]{\emph{This project is a Proof of Concept of GCC Extension for Detecting Critical Sections in a Multi-threaded Environment.}}
+\fancyfoot[LO,LE]{\emph{This project proposes a GCC Extension for Detecting Critical Sections in a Multi-threaded Environment.}}
 \cfoot{}
 \fancyfoot[RO, RE]{\thepage}
 \renewcommand{\headrulewidth}{0.4pt}
 \renewcommand{\footrulewidth}{0.4pt}
 %For the header and footer Over
 
+
 % Altering the Index Page Title
-%\renewcommand{\contentsname}{\begin{center}\textsc{University Of Pune \\2011 - 2012}\\[1cm]Index\end{center}}
+%\renewcommand{\contentsname}{\begin{center}\textsc{University Of Pune \\2011 - 2012}\\[1cm]Index\end{center}} 
 
 
 %GLOBAL SETTINGS OVER, DOCUMENT BEGINS
@@ -94,7 +101,7 @@
 \newpage
 
 % includes the certificate page
-\input{certificate.tex}
+\input{cert.tex}
 \newpage
 
 % includes the acknowledgements page
@@ -124,6 +131,10 @@
 \listoffigures % adds List of Figures
 \cleardoublepage
 
+\addtocontents{lof}{\protect\thispagestyle{empty}}
+\listoftables % adds List of Figures
+\cleardoublepage
+
 %And reset back the settings we choose for Header and Footer
 \pagestyle{fancy}
 
@@ -131,7 +142,7 @@
 \pagenumbering{arabic} %reset numbering to normal for the main content
 
 \input{introduction.tex} % adds the introduction page
-\input{literature-survey.tex} % adds the Literatu re Survey page
+\input{ls.tex} % adds the Literatu re Survey page
 \input{proposed-work.tex} % adds the Project Work page
 \input{research-methodology.tex} % adds the Research Methodology page
 \input{project-design.tex} % adds the Project Design

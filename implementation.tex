@@ -9,12 +9,19 @@ The important aspect of the approach is that we are analyzing the programs stati
 \caption{Architectural Diagram}
 \label{<<Label>>}
 \end{figure}
-
+\newpage
 \section{Architecture}
 
 \subsection{Input Source Files}
 A normal multithreaded program is given as input with critical sections. This file is first compiled to check for errors and only when it is compiled error free; it heads to the next stage.
-\includegraphics[scale=0.5]{input\_source}\\[0.5c]
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.5]{input.png}
+\caption{Source File(s)}
+\label{<<Label>>}
+\end{figure}
+
 
 \subsection{Parser, Tokenizer, Grammar}
 Flex (The Fast Lexical Analyser) is a tool for generating scanners. A scanner, sometimes called a tokenizer, is a program which recognizes lexical patterns in text. The flex program reads user-specified input files, or its standard input if no file names are given, for a description of a scanner to generate [4].
@@ -30,8 +37,14 @@ The different in-built functions were monitoring are:\\
 \item sem\_wait\\
 \item sem\_post\\
 \end{itemize}
-\includegraphics[scale=0.5]{parser}\\[0.5c]
 
+\begin{figure}[H]
+\centering
+\includegraphics[scale=1]{grammar.png}
+\caption{Parser, Tokenizer, Grammar}
+\label{<<Label>>}
+\end{figure}
+\newpage
 \subsection{Generating Tables}
 Yacc (Yet Another Compiler Compiler) provides a general tool for describing the input to a computer program. We specify the structures of the input, together with code to be invoked as each such structure is recognized. Yacc turns such a specification into a subroutine that handles the input process; frequently, it is convenient and appropriate to have most of the flow of control in the user's application handled by this subroutine.
 
@@ -62,17 +75,87 @@ Stores a log of all variables which may cause data races and helps analysis the 
 
 \end{itemize}
 
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.6]{tables.png}
+\caption{Generated tables}
+\label{<<label>>}
+\end{figure}
+
+\newpage
 \subsection{Analysis}
 Once all tables are generated we analyze them. If any shared variable exists in multiple functions and is unhandled i.e. it is not protected with the function calls sem\_wait(), sem\_post(), then we categorize that shared variable as unhandled critical section and add its entry to the critical section table.
 
 After getting a table having all the unhandled critical sections, we analyze it for the location where we need to provides locks and unlocks. 
 
 From the Critical Section Table, we get the line numbers of first and last occurrence of shared variables’ usage. Depending on their closeness, we decide the number of times we need to lock, and unlock.
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.6]{cs.png}
+\caption{Critical Section Table}
+\label{<<label>>}
+\end{figure}
+
 
 \subsection{Output}
 Once all tables are analyzed and we display all the unhandled critical sections that exist. The various attributes of the critical sections that are found are: 
 \begin{itemize}
 
+\item The shared object which is being accessed my multiple threads
+\item The threads which are accessing the same shared object
+\item The functions in which the critical section exist
+\item The location pertaining to the line number of the critical section
+
+\end{itemize}
+
+We then decide if the programmer handles the critical sections himself, or we have to handle it. Once the permissions are given, we add sem\_wait() sem\_post(), recompile the code to produce bug free programs.
+
+As par the implementation part is concern we required certain modules to be integrate to form the whole system or tool. Form the implementation point of view this tool is divided into following modules .
+\begin{itemize}
+\item Input Source File
+\item Tokenization and Parsing
+\item Generating Tables
+\item Analysis
+\item Output
+\end{itemize}
+
+%Add Description here.. 
+Module of the Tokenization and Parsing
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.4]{Snaps/main_l_1.png}
+\caption{Tokens}
+\label{<<Label>>}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.4]{Snaps/main_l_2.png}
+\caption{Tokens}
+\label{<<Label>>}
+\end{figure}
+
+
+\section{Generating Tables}
+%Add Description here..
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.4]{Snaps/common_1.png}
+\caption{Table's structure}
+\label{<<Label>>}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.4]{Snaps/common_2.png}
+\caption{Table's structure}
+\label{<<Label>>}
+\end{figure}
+
+\section{Output}
+%Add Description here..\begin{itemize}
+
+If the input program is one of the following kind, then it can be said to be a correct program:
 \item The shared object which is being accessed my multiple threads
 
 \item The threads which are accessing the same shared object
@@ -80,11 +163,98 @@ Once all tables are analyzed and we display all the unhandled critical sections 
 \item The functions in which the critical section exist
 
 \item The location pertaining to the line number of the critical section
-
 \end{itemize}
 
-We then decide if the programmer handles the critical sections himself, or we have to handle it. Once the permissions are given, we add sem\_wait() sem\_post(), recompile the code to produce bug free programs.
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.3]{Snaps/help.png}
+\caption{All functionality available by different command line flags}
+\label{<<Label>>}
+\end{figure}
 
-\section{Placement of our tool in GCC hierarchy}
-Our tool exists adjacent to the current architecture of GCC but runs once the compilation is over and no errors are generated. It keeps a copy of the original source code, works on it, and pushes its warnings along with the warnings of the compiler.
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.5]{cs.png}
+\caption{Contents of Critical Section Table}
+\label{<<Label>>}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.4]{Snaps/out1.png}
+\caption{Call trace for a thread function}
+\label{<<Label>>}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.4]{Snaps/out2.png}
+\caption{Detected Critical Section}
+\label{<<Label>>}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.4]{Snaps/out3.png}
+\caption{Suspected Critical Section}
+\label{<<Label>>}
+\end{figure}
+
+\newpage
+\section{Manual Testing}
+
+% ACTUAL TABLE CODE
+\setlength{\tabcolsep}{10pt}
+\renewcommand{\arraystretch}{1.6}
+\begin{longtable}{| p{1.9cm} | p{2.0cm} | >{\centering\arraybackslash}m{0.7cm} | p{2.1cm} | p{2.1cm} | p{1.5cm} | p{0.8cm} | }
+
+\caption{Manual Testing}
+\label{<<Label>>}
+\hline
+TestCase ID&Objective&Case&Procedure&Expected Results&Actual Results&Pass /Fail\\
+\hline
+\endfirsthead
+\multicolumn{7}{c}%
+{\tablename\ \thetable\ -- \textit{Continued from previous page}} \\
+\hline
+TestCase ID&Objective&Case&Procedure&Expected Results&Actual Results&Pass /Fail\\
+\hline
+\endhead
+\hline \multicolumn{7}{r}{\textit{Continued on next page}} \\
+\endfoot
+\hline
+\endlastfoot
+Check Tools		& To check requirements of different tools. & 1. & a) Open Terminal and enter gcc. & GCC should be available.  & Same as Expected  & Pass \\
+		&		&   & b) Open terminal and enter lex  & lex should be available   & Same as Expected   &  Pass  \\ 
+		&		&   & c) Open terminal and enter yacc & yacc should be available   & Same as Expected   &  Pass  \\ \hline
+  
+Program Structure & To check nature of program. & 1. & a) Program should be errorless. & Compilation of program should be successful  & Same as Expected  & Pass \\
+		&		&   & b) Program should contains POSIX threads. & Program should create new threads using POSIX API.   & Same as Expected   &  Pass  \\ \hline 
+
+Tokenization & To create different tokens as per constraints. & 1. & a) Datatypes & Different tokens should be generated according to datatypes.  & Same as Expected  & Pass \\  
+	     & & 2. & a) Function signature should be tokenized. & Fuction name,number of argument and return type should be tokenized  & Same as Expected  & Pass \\
+	     & & 3. & b) POSIX thread's signature should be tokenized. & Thread object,Function name which is executed by thread,number of argument and return type should be tokenized  & Same as Expected  & Pass \\	
+	     & & 4. & c) Semaphore signature should be tokenized. & Semaphore name,different semaphore signals should be tokenized  & Same as Expected  & Pass \\
+     	     & & 5. & d) mutex signature should be tokenized. & Mutex name,different mutex signals should be tokenized  & Same as Expected  & Pass \\ \hline
+	
+Parsing & Generate different grammer as per tokens. & 1. & a) Grammer for variable datatypes. & Valid grammer should be generated for datatype.  & Same as Expected  & Pass \\  
+	     & & 2. & b) Grammer for function signature. & Valid grammer should be generated for functions. & Same as Expected  & Pass \\
+	     & & 3. & c) Grammer for POSIX thread's signature. & Valid grammer should be generated for threads. & Same as Expected  & Pass \\	
+	     & & 4. & d) Grammer for API of Semaphore. & Valid grammer should be generated for semaphores & Same as Expected  & Pass \\
+     	     & & 5. & e) Grammer for Mutex. & Valid grammer should be generated for mutex & Same as Expected  & Pass \\ \hline
+
+Table Generation.& Different table are genereted according grammers. & 1. & a) Table for variable including global and local. & Valid tables should be generated for datatype including local and global.  & Same as Expected  & Pass \\  
+	     & & 2. & b) Table for function signature. & Valid table should be generated for functions. & Same as Expected  & Pass \\
+	     & & 3. & c) Table for POSIX thread's signature. & Valid table should be generated for threads. & Same as Expected  & Pass \\	
+	     & & 4. & d) Table for API of Semaphore. & Valid table should be generated for semaphores & Same as Expected  & Pass \\
+     	     & & 5. & e) Table for shared memory (Log Table ) & Valid table should be generated for shared memory & Same as Expected & Pass \\
+             & & 6. & f) Table for Mutex. & Valid table should be generated for mutex & Same as Expected  & Pass \\ \hline 
+
+Analysis of critical section.& Critical sections blocks are detected  & 1.& a) Locking and unlocking mechanism. & Check wheter locking and unlocking mechanism is exist for Critical Section.  & Same as Expected  & Pass \\  
+	     & & 2. & b) Critical Section detection.& If critical section isn't synchronized then add it. & Same as Expected  & Pass \\ \hline
+
+		
+		 
+
+\end{longtable}
+% ACTUAL TABLE CODE END
 

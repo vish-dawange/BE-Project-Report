@@ -1,0 +1,38 @@
+\thispagestyle {empty}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {1.1}{\ignorespaces Threads}}{3}{figure.1.1}
+\contentsline {figure}{\numberline {1.2}{\ignorespaces Multithreading}}{3}{figure.1.2}
+\contentsline {figure}{\numberline {1.3}{\ignorespaces Shared Memory}}{4}{figure.1.3}
+\contentsline {figure}{\numberline {1.4}{\ignorespaces Critical Section}}{7}{figure.1.4}
+\contentsline {figure}{\numberline {1.5}{\ignorespaces Race Condition}}{8}{figure.1.5}
+\contentsline {figure}{\numberline {1.6}{\ignorespaces Synchronization}}{9}{figure.1.6}
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Use case diagram}}{22}{figure.5.1}
+\contentsline {figure}{\numberline {5.2}{\ignorespaces State chart diagram}}{23}{figure.5.2}
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Sequence Diagram}}{24}{figure.5.3}
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Collaboration Diagram}}{25}{figure.5.4}
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Activity Diagram}}{26}{figure.5.5}
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Component Diagram}}{27}{figure.5.6}
+\contentsline {figure}{\numberline {5.7}{\ignorespaces Deployment Diagram}}{28}{figure.5.7}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {6.1}{\ignorespaces Architectural Diagram}}{29}{figure.6.1}
+\contentsline {figure}{\numberline {6.2}{\ignorespaces Source File(s)}}{30}{figure.6.2}
+\contentsline {figure}{\numberline {6.3}{\ignorespaces Parser, Tokenizer, Grammar}}{31}{figure.6.3}
+\contentsline {figure}{\numberline {6.4}{\ignorespaces Generated tables}}{33}{figure.6.4}
+\contentsline {figure}{\numberline {6.5}{\ignorespaces Critical Section Table}}{34}{figure.6.5}
+\contentsline {figure}{\numberline {6.6}{\ignorespaces Tokens}}{36}{figure.6.6}
+\contentsline {figure}{\numberline {6.7}{\ignorespaces Tokens}}{36}{figure.6.7}
+\contentsline {figure}{\numberline {6.8}{\ignorespaces Table's structure}}{37}{figure.6.8}
+\contentsline {figure}{\numberline {6.9}{\ignorespaces Table's structure}}{37}{figure.6.9}
+\contentsline {figure}{\numberline {6.10}{\ignorespaces All functionality available by different command line flags}}{38}{figure.6.10}
+\contentsline {figure}{\numberline {6.11}{\ignorespaces Contents of Critical Section Table}}{39}{figure.6.11}
+\contentsline {figure}{\numberline {6.12}{\ignorespaces Call trace for a thread function}}{39}{figure.6.12}
+\contentsline {figure}{\numberline {6.13}{\ignorespaces Detected Critical Section}}{40}{figure.6.13}
+\contentsline {figure}{\numberline {6.14}{\ignorespaces Suspected Critical Section}}{40}{figure.6.14}
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {8.1}{\ignorespaces Gantt Chart }}{51}{figure.8.1}
+\addvspace {10\p@ }

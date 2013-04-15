@@ -1,0 +1,121 @@
+\chapter{Literature Survey}
+
+There are two ways to detect critical sections as follows:\\
+1) Static analysis\\
+2) Dynamic analysis\\
+
+There are very few tools available which detect critical section in multi-threaded environment.
+These tools have used one of these two methods.
+
+\section{Static Analysis}
+This methods for race detection examine only the program text, and assume that all execution paths through the program are possible. Under this assumption, determining whether sections of code may execute con-currently (or in some other order) requires examining only the explicit synchronization in the program (this assumption would always be correct if the program contained no conditionally executed code). Static analysis therefore examines how the programs synchronization might allow such potential orderings. Using this ordering information, and a conservative analysis of which shared variables may be read and written in each section of code, data races and general races can be detected.
+
+First, some methods traverse the space of all possible states that the program may enter. This state space can either be constructed explicitly, by building a graph, or implicitly, by constructing a representation of the state space (such as a formal language or a petri-net). In the general case, these methods have exponential time complexity, and in some cases, exponential space complexity as well.
+
+Second, other static analysis methods perform a data-flow analysis of the program to discover potential event orderings. These methods have polynomial time and space complexity, but are less accurate than the state-space methods, sometimes reporting races that the program could never exhibit (and that the state-space methods would never report).
+
+Static analysis has also been used to complement dynamic methods. Static analysis can sometimes rule out the possibility of races between some sections of the program, precluding the need for tracing these program sections for dynamic analysis. Static analysis can also compute input data that might manifest a race, allowing dynamic analysis to attempt to verify the existence of that race.
+
+Advantages:\\
+1) Easy to implement\\
+2) No need to analysis dynamic nature of a program.\\
+Disadvantages:\\
+1) Static analysis doesn't predict perfectly nature of a program.\\
+2) It requires to use diferent API's of different libraries.\\
+
+\section{Dynamic Analysis}
+Unlike static analysis, dynamic analysis detects the race conditions exhibited by a particular execution of the program. Dynamic analysis is especially useful for debugging since precise information about manifestations of particular bugs is available. Below the authors[3] outline previous work on dynamic data race and general race detection. They first discuss the similarities and differences of the various methods and then present the unique details of each. Finally, they present an example that focuses on the simple type of analysis that is common to all methods. They show why this analysis can report race artifacts, and discuss other aspects of previous work.
+
+There are many tools exist which are used to determining possibility of critical section in multi-threaded program.These tools are as followed:\\
+1) Valgrind\\
+2) gdb\\
+
+These tools are explained below in detailed:
+\newpage
+\subsection{Valgrind}
+It is a GPL licensed programming tool for memory debugging, memory leak detection, and profiling.Valgrind was originally designed to be a free memory debugging tool for Linux on x86, but has since evolved to become a generic framework for creating dynamic analysis tools such as checkers and profilers. It is used by a number of Linux-based projects.
+There are multiple tools included with Valgrind (and several external ones). These are as followed. 
+
+\subsubsection{Memcheck}
+It is default and most used tool in valgrind,It is used for detecting memory leakage.\\
+The memcheck is mostly used for:\\
+1) Use of uninitialized memory \\
+2) Reading/writing memory after it has been freed \\
+3) Reading/writing off the end of malloc'd blocks \\
+4) Memory leaks
+
+\subsubsection{Helgrind}
+Helgrind is a Valgrind tool for detecting synchronisation errors in C, C++ and Fortran programs that use the POSIX pthreads threading primitives.
+The main abstractions in POSIX pthreads are: a set of threads sharing a common address space, thread creation, thread joining, thread exit, mutexes (locks), condition variables (inter-thread event notifications), reader-writer locks, spinlocks, semaphores and barriers.\\
+Helgrind can detect three classes of errors, which are discussed in detail in the next three sections:\\
+1) Misuses of the POSIX pthreads API.\\
+2) Potential deadlocks arising from lock ordering problems.\\
+3) Data races -- accessing memory without adequate locking or synchronisation. \\
+Problems like these often result in unreproducible, timing-dependent crashes, deadlocks and other misbehaviour, and can be difficult to find by other means.
+
+Helgrind is aware of all the pthread abstractions and tracks their effects as accurately as it can. On x86 and amd64 platforms, it understands and partially handles implicit locking arising from the use of the LOCK instruction prefix. On PowerPC/POWER and ARM platforms, it partially handles implicit locking arising from load-linked and store-conditional instruction pairs. Helgrind works best when your application uses only the POSIX pthreads API.
+
+Following those is a section containing hints and tips on how to get the best out of Helgrind. Then there is a summary of command-line options. Finally, there is a brief summary of areas in which Helgrind could be improved. 
+
+Detected errors: Misuses of the POSIX pthreads API. Helgrind intercepts calls to many POSIX pthreads functions, and is therefore able to report on various common problems. Although these are unglamourous errors, their presence can lead to undefined program behaviour and hard-to-find bugs later on. The detected errors are:\\
+1) unlocking an invalid mutex\\
+2) unlocking a not-locked mutex\\
+3) unlocking a mutex held by a different thread\\
+4) destroying an invalid or a locked mutex\\
+5) recursively locking a non-recursive mutex\\
+6) deallocation of memory that contains a locked mutex\\
+7) passing mutex arguments to functions expecting reader-writer lock arguments, and vice versa\\
+8) when a POSIX pthread function fails with an error code that must be handled\\
+9) when a thread exits whilst still holding locked locks\\
+10) calling pthread\_cond\_wait with a not-locked mutex, an invalid mutex, or one locked by a different thread\\
+11) inconsistent bindings between condition variables and their associated mutexes\\
+12) invalid or duplicate initialisation of a pthread barrier\\
+13) initialisation of a pthread barrier on which threads are still waiting\\
+14) destruction of a pthread barrier object which was never initialised, or on which threads are still waiting\\
+15) waiting on an uninitialised pthread barrier\\
+16) for all of the pthreads functions that Helgrind intercepts, an error is reported, along with a stack trace, if the system threading library routine returns an error code, even if Helgrind itself detected no error\\
+Checks pertaining to the validity of mutexes are generally also performed for reader-writer locks. Various kinds of this-can't-possibly-happen events are also reported. These usually indicate bugs in the system threading library.
+
+ 
+\section{Automatic Critical Section Discovery Using Memory Usage Patterns}
+\subsection{Summary}
+
+The authors[2] have introduced a new heuristic to infer critical sections using the tempo- ral and spatial locality of critical sections and provide empirical results showing that the heuristic can infer critical sections in shared memory programs. A programmer can use the reported critical sections to inform his addition of locks into the program. They present evidence for a new way to discover a type of parallel programming bug called an atomicity violation, which occurs when a programmer expects that a region of code will be executed without interference from other simultaneously executing code regionsthat is it must exe- cute atomically. While several tools can analyze a programs memory usage, paper choose to use Pintool. This tool allows it to run on any program using X86 assembly language[2].
+
+\subsection{Advantages}
+
+The Tool can be incorporated as advisor program that informs the programmer of code regions that might need to be critical sections and to incorporate the results into a second program that automatically inserts critical sections into the code.
+
+Around 75\% to 80\% of static real critical sections were fully covered, fully covered with overlap or partially covered with the best set of thresholds for all benchmarks with the majority being fully covered. For dynamic real critical section coverage, this number jumps to around 90\%.
+
+\subsection{Disadvantages}
+
+The authors analysis incorrectly included instructions that were inside pthread library functions, because Pin was unable to completely identify both the dynamic beginning and end of all pthread library functions.
+
+Analysis was limited by the fact that we only had enough computing power to analyze heap memory references for inferring objects.
+
+
+\section{Automatic Lock Insertion in Concurrent Programs}
+
+\subsection{Summary}
+
+The authors[4] consider the problem of lock insertion to enforce critical sections required to fix bugs like atomicity violations. This can be accomplished in a trivial manner by sim- ply encapsulating the desired regions of code within lock/unlock statements. However, enforcing critical sections is often not the sole criterion to be satisfied during lock insertion. Indeed, adding mutexes may introduce new deadlocks. Thus a key goal is to guarantee deadlock-free lock insertion, i.e., no new deadlocks are introduced.
+The authors[3] have designed an algorithm which concentrates on the correctness and per- formance. These contraints may be of conflicting nature but are indeed key components that is needed to ensure a deadlock-free program, while keeping the critical sections as small as possible. Enforcement of mutually atomicity, deadlock freedom, optimality. The authors[4] have concentrated on the concepts of nested locks, which avoids global analysis and ensures large real-life problems[4].
+
+\subsection{Advantages}
+
+The technique presented by the authors have considered the case where prior locks exist, and how to handle them, since removing existing locks and putting them again in a pre-defined order presents many practical obstacles.
+
+It analyzes only a part of program which has the critical section bugs and not the whole program.
+
+Side benefit is that it ensures scalability of the analysis.
+
+\section{Minimum Lock Assignment: A Method for Exploiting Concurrency among Critical Sections}
+
+\subsection{Summary}
+
+A naive lock assignment approach associates one lock to each shared memory location, and the lock set of a critical section is the set of locks assigned to memory locations it accesses. This approach, however, may use more locksthan necessary, and introduce excessive over- head on lock acquisition and release. To control the locking overhead, the authors[5] would use the minimum number of locks which is necessary to preserve the mutual exclusion and fully exploit theconcurrency between critical sections.
+
+Minimum Lock Assignment:Given a multithreaded program with a set of critical sections, find the minimum number of distinct locks that are needed for controlling the critical sec- tions such that
+(a) Two critical sections are assigned disjoint sets of locks if they are concurrent and they do not access any common location, or if they access a common location then none of them writes to the common location.
+(b) Two critical sections are assigned at least one common lock if they are concurrent and they access some common location and at least one of them writes to the common location.

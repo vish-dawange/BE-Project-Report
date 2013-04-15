@@ -1,0 +1,26 @@
+\chapter{Research Methodology}
+
+
+\section{Steps to acquire and process}
+\subsection{Parser & Tokenize (Flex)}
+This stage helps us token the program for further processing.
+
+\subsection{Grammar & Generation of tables (Yacc)}
+Once the tokens are generated we pass the output to this phase, where it goes
+through our grammar, which helps find out different threads, functions associated
+with them, parameters, shared memory being used in them.
+We generate the following tables based on the grammar:-
+\begin{itemize}
+\item Global variable (var\_name, location)
+\item User-defined Functions (func\_name, location)
+\item Parameter table (func\_name, all\_parameters)
+\item Thread-Functions table (thread\_handle, func\_name)
+\item Function local variable table (func\_name, var\_name)
+\item Variables' log table (var\_name, func\_name, location)
+\item Critical Section table (var\_name, location)
+\end{itemize}
+\subsection{Analysis}
+Once the tables are generated, we check if any global variables are being used
+in multiple functions, and whether they are handled using sem\_wait() and sem\_post()
+function calls.
+

@@ -1,0 +1,57 @@
+\chapter{Testing}
+
+% ACTUAL TABLE CODE
+\setlength{\tabcolsep}{10pt}
+\renewcommand{\arraystretch}{1.6}
+\begin{longtable}{| p{1.9cm} | p{2.0cm} | >{\centering\arraybackslash}m{0.7cm} | p{2.1cm} | p{2.1cm} | p{1.5cm} | p{0.8cm} | }
+\label{<<Label>>}
+\caption{Test Cases}
+\label{<<Label>>}
+\hline
+TestCase ID&Objective&Case&Procedure&Expected Results&Actual Results&Pass /Fail\\
+\hline
+\endfirsthead
+\multicolumn{7}{c}%
+{\tablename\ \thetable\ -- \textit{Continued from previous page}} \\
+\hline
+TestCase ID&Objective&Case&Procedure&Expected Results&Actual Results&Pass /Fail\\
+\hline
+\endhead
+\hline \multicolumn{7}{r}{\textit{Continued on next page}} \\
+\endfoot
+\hline
+\endlastfoot
+Check Tools		& To check requirements of different tools. & 1. & a) Open Terminal and enter gcc. & GCC should be available.  & Same as Expected  & Pass \\
+		&		&   & b) Open terminal and enter lex  & lex should be available   & Same as Expected   &  Pass  \\ 
+		&		&   & c) Open terminal and enter yacc & yacc should be available   & Same as Expected   &  Pass  \\ \hline
+  
+Program Structure & To check nature of program. & 1. & a) Program should be errorless. & Compilation of program should be successful  & Same as Expected  & Pass \\
+		&		&   & b) Program should contains POSIX threads. & Program should create new threads using POSIX API.   & Same as Expected   &  Pass  \\ \hline 
+
+Tokenization & To create different tokens as per constraints. & 1. & a) Datatypes & Different tokens should be generated according to datatypes.  & Same as Expected  & Pass \\  
+	     & & 2. & a) Function signature should be tokenized. & Fuction name,number of argument and return type should be tokenized  & Same as Expected  & Pass \\
+	     & & 3. & b) POSIX thread's signature should be tokenized. & Thread object,Function name which is executed by thread,number of argument and return type should be tokenized  & Same as Expected  & Pass \\	
+	     & & 4. & c) Semaphore signature should be tokenized. & Semaphore name,different semaphore signals should be tokenized  & Same as Expected  & Pass \\
+     	     & & 5. & d) mutex signature should be tokenized. & Mutex name,different mutex signals should be tokenized  & Same as Expected  & Pass \\ \hline
+	
+Parsing & Generate different grammer as per tokens. & 1. & a) Grammer for variable datatypes. & Valid grammer should be generated for datatype.  & Same as Expected  & Pass \\  
+	     & & 2. & b) Grammer for function signature. & Valid grammer should be generated for functions. & Same as Expected  & Pass \\
+	     & & 3. & c) Grammer for POSIX thread's signature. & Valid grammer should be generated for threads. & Same as Expected  & Pass \\	
+	     & & 4. & d) Grammer for API of Semaphore. & Valid grammer should be generated for semaphores & Same as Expected  & Pass \\
+     	     & & 5. & e) Grammer for Mutex. & Valid grammer should be generated for mutex & Same as Expected  & Pass \\ \hline
+
+Table Generation.& Different table are genereted according grammers. & 1. & a) Table for variable including global and local. & Valid tables should be generated for datatype including local and global.  & Same as Expected  & Pass \\  
+	     & & 2. & b) Table for function signature. & Valid table should be generated for functions. & Same as Expected  & Pass \\
+	     & & 3. & c) Table for POSIX thread's signature. & Valid table should be generated for threads. & Same as Expected  & Pass \\	
+	     & & 4. & d) Table for API of Semaphore. & Valid table should be generated for semaphores & Same as Expected  & Pass \\
+     	     & & 5. & e) Table for shared memory (Log Table ) & Valid table should be generated for shared memory & Same as Expected & Pass \\
+             & & 6. & f) Table for Mutex. & Valid table should be generated for mutex & Same as Expected  & Pass \\ \hline 
+
+Analysis of critical section.& Critical sections blocks are detected  & 1.& a) Locking and unlocking mechanism. & Check wheter locking and unlocking mechanism is exist for Critical Section.  & Same as Expected  & Pass \\  
+	     & & 2. & b) Critical Section detection.& If critical section isn't synchronized then add it. & Same as Expected  & Pass \\ \hline
+
+		
+		 
+
+\end{longtable}
+% ACTUAL TABLE CODE END

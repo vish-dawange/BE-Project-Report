@@ -1,0 +1,74 @@
+\thispagestyle {empty}
+\contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}
+\contentsline {section}{\numberline {1.1}Background}{2}{section.1.1}
+\contentsline {subsection}{\numberline {1.1.1}Multithreading}{2}{subsection.1.1.1}
+\contentsline {subsection}{\numberline {1.1.2}POSIX thread (pthread) libraries}{4}{subsection.1.1.2}
+\contentsline {subsection}{\numberline {1.1.3}Critical Section}{6}{subsection.1.1.3}
+\contentsline {paragraph}{}{6}{section*.4}
+\contentsline {subsection}{\numberline {1.1.4}Race Condition}{6}{subsection.1.1.4}
+\contentsline {paragraph}{}{7}{section*.5}
+\contentsline {subsection}{\numberline {1.1.5}Synchronization}{7}{subsection.1.1.5}
+\contentsline {paragraph}{}{8}{section*.6}
+\contentsline {section}{\numberline {1.2}Need}{8}{section.1.2}
+\contentsline {section}{\numberline {1.3}Motivation}{8}{section.1.3}
+\contentsline {section}{\numberline {1.4}Objective}{9}{section.1.4}
+\contentsline {chapter}{\numberline {2}Literature Survey}{10}{chapter.2}
+\contentsline {section}{\numberline {2.1}Static Analysis}{10}{section.2.1}
+\contentsline {section}{\numberline {2.2}Dynamic Analysis}{11}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}Valgrind}{12}{subsection.2.2.1}
+\contentsline {subsubsection}{Memcheck}{12}{section*.7}
+\contentsline {subsubsection}{Helgrind}{12}{section*.8}
+\contentsline {section}{\numberline {2.3}Automatic Critical Section Discovery Using Memory Usage Patterns}{14}{section.2.3}
+\contentsline {subsection}{\numberline {2.3.1}Summary}{14}{subsection.2.3.1}
+\contentsline {subsection}{\numberline {2.3.2}Advantages}{14}{subsection.2.3.2}
+\contentsline {subsection}{\numberline {2.3.3}Disadvantages}{14}{subsection.2.3.3}
+\contentsline {section}{\numberline {2.4}Automatic Lock Insertion in Concurrent Programs}{15}{section.2.4}
+\contentsline {subsection}{\numberline {2.4.1}Summary}{15}{subsection.2.4.1}
+\contentsline {subsection}{\numberline {2.4.2}Advantages}{15}{subsection.2.4.2}
+\contentsline {section}{\numberline {2.5}Minimum Lock Assignment: A Method for Exploiting Concurrency among Critical Sections}{15}{section.2.5}
+\contentsline {subsection}{\numberline {2.5.1}Summary}{15}{subsection.2.5.1}
+\contentsline {chapter}{\numberline {3}Proposed Work}{17}{chapter.3}
+\contentsline {section}{\numberline {3.1}Problem Statement}{17}{section.3.1}
+\contentsline {section}{\numberline {3.2}Scope}{17}{section.3.2}
+\contentsline {chapter}{\numberline {4}Research Methodology}{18}{chapter.4}
+\contentsline {section}{\numberline {4.1}Steps to acquire and process}{18}{section.4.1}
+\contentsline {subsection}{\numberline {4.1.1}Parser & Tokenize (Flex)}{18}{subsection.4.1.1}
+\contentsline {subsection}{\numberline {4.1.2}Grammar & Generation of tables (Yacc)}{18}{subsection.4.1.2}
+\contentsline {subsection}{\numberline {4.1.3}Analysis}{18}{subsection.4.1.3}
+\contentsline {chapter}{\numberline {5}Project Design}{19}{chapter.5}
+\contentsline {section}{\numberline {5.1}Software Requirement Specification}{19}{section.5.1}
+\contentsline {subsection}{\numberline {5.1.1}Hardware Requirements}{19}{subsection.5.1.1}
+\contentsline {subsection}{\numberline {5.1.2}Software Requirements}{19}{subsection.5.1.2}
+\contentsline {subsection}{\numberline {5.1.3}Technologies Used}{19}{subsection.5.1.3}
+\contentsline {section}{\numberline {5.2}U.M.L. Diagrams}{20}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}Use Case}{20}{subsection.5.2.1}
+\contentsline {paragraph}{}{20}{section*.9}
+\contentsline {subsection}{\numberline {5.2.2}State Chart}{21}{subsection.5.2.2}
+\contentsline {paragraph}{}{21}{section*.10}
+\contentsline {subsection}{\numberline {5.2.3}Sequence Diagram}{22}{subsection.5.2.3}
+\contentsline {paragraph}{}{22}{section*.11}
+\contentsline {subsection}{\numberline {5.2.4}Collaboration Diagram}{23}{subsection.5.2.4}
+\contentsline {paragraph}{}{23}{section*.12}
+\contentsline {subsection}{\numberline {5.2.5}Activity Diagram}{24}{subsection.5.2.5}
+\contentsline {paragraph}{}{24}{section*.13}
+\contentsline {subsection}{\numberline {5.2.6}Component Diagram}{25}{subsection.5.2.6}
+\contentsline {paragraph}{}{25}{section*.14}
+\contentsline {subsection}{\numberline {5.2.7}Deployment Diagram}{26}{subsection.5.2.7}
+\contentsline {paragraph}{}{26}{section*.15}
+\contentsline {chapter}{\numberline {6}Implementation}{27}{chapter.6}
+\contentsline {section}{\numberline {6.1}Architecture}{28}{section.6.1}
+\contentsline {subsection}{\numberline {6.1.1}Input Source Files}{28}{subsection.6.1.1}
+\contentsline {subsection}{\numberline {6.1.2}Parser, Tokenizer, Grammar}{28}{subsection.6.1.2}
+\contentsline {subsection}{\numberline {6.1.3}Generating Tables}{30}{subsection.6.1.3}
+\contentsline {subsection}{\numberline {6.1.4}Analysis}{31}{subsection.6.1.4}
+\contentsline {subsection}{\numberline {6.1.5}Output}{31}{subsection.6.1.5}
+\contentsline {section}{\numberline {6.2}Generating Tables}{34}{section.6.2}
+\contentsline {section}{\numberline {6.3}Output}{35}{section.6.3}
+\contentsline {section}{\numberline {6.4}Manual Testing}{38}{section.6.4}
+\contentsline {chapter}{\numberline {7}Scheduling}{42}{chapter.7}
+\contentsline {section}{\numberline {7.1}Proposed Modules}{42}{section.7.1}
+\contentsline {section}{\numberline {7.2}Scheduling}{42}{section.7.2}
+\contentsline {chapter}{\numberline {8}Conclusion and Future Scope}{43}{chapter.8}
+\contentsline {section}{\numberline {8.1}Conclusion}{43}{section.8.1}
+\contentsline {section}{\numberline {8.2}Future Scope}{43}{section.8.2}
+\contentsline {chapter}{References}{44}{chapter*.16}
